@@ -23,10 +23,6 @@ const Verification = () => {
                         </div>
                     </div>
                     <form className="login__verification login__form">
-                        <div className="login__verification-back">
-                            <span className="login__verification-icon"><MdArrowBackIosNew/></span>
-                            <p className="login__verification-text">Назад</p>
-                        </div>
                         <h2 className="login__verification-title">Выслали письмо со ссылкой для завершения
                             регистрации на example@gmail.com
                         </h2>
@@ -40,6 +36,10 @@ const Verification = () => {
                         </p>
                         <h4 onClick={openModal} className="login__form-text">Письмо не пришло</h4>
                     </form>
+                </div>
+                <div className="login__verification-back">
+                    <span className="login__verification-icon"><MdArrowBackIosNew/></span>
+                    <p className="login__verification-text">Назад</p>
                 </div>
             </section>
             {

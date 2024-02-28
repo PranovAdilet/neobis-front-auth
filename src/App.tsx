@@ -1,12 +1,17 @@
 import React from 'react';
-import Verification from "./components/Verification";
+import Login from "./pages/Login/Login";
+import {Route, Routes} from "react-router-dom";
+import Registration from "./pages/Register/Registration";
 
 
 
 function App() {
   return (
     <div className="App">
-        <Verification/>
+        <Routes>
+            <Route path="/signUp" element={<Registration/>}/>
+            <Route path="/" element={<Login/>}/>
+        </Routes>
     </div>
   );
 }

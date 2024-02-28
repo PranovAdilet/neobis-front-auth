@@ -1,5 +1,9 @@
 .login {
-  padding: 80px 190px 30px 165px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  position: relative;
 }
 .login__content {
   display: flex;
@@ -7,10 +11,12 @@
   justify-content: center;
   column-gap: 230px;
 }
+.login__right {
+  height: 100vh;
+  max-height: 57vh;
+}
 .login__left {
   max-width: 450px;
-  width: 50%;
-  align-items: center;
 }
 .login__left-info {
   padding: 40px 75px 0;
@@ -33,14 +39,13 @@
 }
 .login__form {
   position: relative;
-  width: 50%;
-  max-width: 343px;
+  width: 343px;
 }
 .login__form-title {
   font-size: 32px;
   font-weight: 500;
   line-height: 48px;
-  margin-bottom: 48px;
+  margin-bottom: 34px;
   text-align: center;
 }
 .login__form-input {
@@ -53,7 +58,7 @@
   font-weight: 500;
   line-height: 24px;
   background: #F8F8F8;
-  margin-bottom: 14px;
+  margin-top: 14px;
 }
 .login__form-input::placeholder {
   color: rgb(118, 118, 118);
@@ -105,8 +110,14 @@
   outline: none;
   padding: 15px;
   position: absolute;
-  top: -148px;
+  top: -128px;
   left: 0;
+}
+.login__error-text {
+  font-size: 16px;
+  font-weight: 500;
+  color: #EC0000;
+  margin: 4px 0 0 6%;
 }
 .login__text {
   color: #767676;
@@ -147,8 +158,8 @@
 }
 .login__verification-back {
   position: absolute;
-  top: -140px;
-  left: -75px;
+  top: 30px;
+  left: 50%;
   display: flex;
   align-items: center;
   column-gap: 12px;
@@ -250,6 +261,7 @@
   box-sizing: border-box;
   list-style-type: none;
   scroll-behavior: smooth;
+  text-decoration: none;
 }
 
 /*# sourceMappingURL=index.css.map */

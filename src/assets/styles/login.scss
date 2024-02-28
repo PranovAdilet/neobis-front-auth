@@ -1,18 +1,26 @@
 .login{
-  padding: 80px 190px 30px 165px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+
+  position: relative;
 
   &__content{
     display: flex;
     align-items: center;
     justify-content: center;
 
+
     column-gap: 230px;
 
   }
+  &__right{
+    height: 100vh;
+    max-height: 57vh;
+  }
   &__left{
     max-width: 450px;
-    width: 50%;
-    align-items: center;
 
     &-info{
       padding: 40px 75px 0;
@@ -39,16 +47,14 @@
   &__form{
 
     position: relative;
-
-    width: 50%;
-    max-width: 343px;
+    width: 343px;
 
     &-title{
       font-size: 32px;
       font-weight: 500;
       line-height: 48px;
 
-      margin-bottom: 48px;
+      margin-bottom: 34px;
       text-align: center;
     }
 
@@ -67,7 +73,7 @@
 
       background: #F8F8F8;
 
-      margin-bottom: 14px;
+      margin-top: 14px;
 
       &::placeholder{
         color: rgb(118, 118, 118);
@@ -144,9 +150,20 @@
     padding: 15px;
 
     position: absolute;
-    top: -148px;
+    top: -128px;
 
     left: 0;
+
+    &-text{
+      font-size: 16px;
+      font-weight: 500;
+
+      color: #EC0000;
+      margin: 4px 0 0 6%;
+
+
+
+    }
 
   }
 
@@ -202,8 +219,8 @@
     }
     &-back{
       position: absolute;
-      top: -140px;
-      left: -75px;
+      top: 30px;
+      left: 50%;
 
       display: flex;
       align-items: center;

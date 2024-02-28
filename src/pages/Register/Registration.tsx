@@ -1,8 +1,15 @@
 import React from 'react';
 import image from "../../assets/images/login.png";
-import {GoEye} from "react-icons/go";
+import {MdArrowBackIosNew} from "react-icons/md";
+import RegistrationForm from "../../components/Form/RegistrationForm";
+
 
 const Registration = () => {
+
+    const handleBack = () => {
+        window.history.back()
+    }
+
     return (
         <section className="login">
             <div className="login__content">
@@ -13,20 +20,11 @@ const Registration = () => {
                         <p className="login__left-text">Твой личный репетитор</p>
                     </div>
                 </div>
-                <form className="login__form">
-                    <h2 className="login__form-title">Создать аккаунт Lorby</h2>
-                    <input placeholder="Введи адрес почты" className="login__form-input" type="email"/>
-                    <input placeholder="Придумай логин" className="login__form-input" type="text"/>
-                    <label className="login__form-label">
-                        <input placeholder="Создай пароль" className="login__form-input" type="password"/>
-                        <span className="login__icon"><GoEye/></span>
-                    </label>
-                    <label className="login__form-label">
-                        <input placeholder="Повтори пароль" className="login__form-input" type="password"/>
-                        <span className="login__icon"><GoEye/></span>
-                    </label>
-                    <button className="login__form-btn">Далее</button>
-                </form>
+                <RegistrationForm/>
+            </div>
+            <div onClick={handleBack} className="login__verification-back">
+                <span className="login__verification-icon"><MdArrowBackIosNew/></span>
+                <p className="login__verification-text">Назад</p>
             </div>
         </section>
     );
