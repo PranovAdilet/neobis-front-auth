@@ -1,7 +1,7 @@
 import React from 'react';
 import image from "../../assets/images/login.png";
 import {MdArrowBackIosNew} from "react-icons/md";
-import RegistrationForm from "../../components/Form/RegistrationForm";
+import RegistrationForm from "../../components/Form/RegistrationForm/RegistrationForm";
 
 
 const Registration = () => {

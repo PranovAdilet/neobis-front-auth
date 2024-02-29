@@ -1,6 +1,6 @@
 import React from 'react';
 import image from "../../assets/images/login.png"
-import LoginForm from "../../components/Form/LoginForm";
+import LoginForm from "../../components/Form/LoginForm/LoginForm";
 
 
 

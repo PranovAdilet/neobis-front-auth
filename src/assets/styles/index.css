@@ -15,6 +15,10 @@
   height: 100vh;
   max-height: 57vh;
 }
+.login__right-signUp {
+  max-height: 70vh;
+  margin-bottom: 15px;
+}
 .login__left {
   max-width: 450px;
 }
@@ -78,6 +82,9 @@
   background: #D7D7D7;
   color: #767676;
 }
+.login__form-btn-signUp {
+  margin-top: 24px !important;
+}
 .login__form-text {
   font-weight: 500;
   font-size: 16px;
@@ -118,6 +125,9 @@
   font-weight: 500;
   color: #EC0000;
   margin: 4px 0 0 6%;
+}
+.login__error-text-valid {
+  color: #1BA228;
 }
 .login__text {
   color: #767676;

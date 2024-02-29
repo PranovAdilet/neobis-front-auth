@@ -12,7 +12,6 @@ function CustomModal({setIsOpen, isOpen} : IProps) {
         setIsOpen(false);
     }
 
-
     return (
         <div className="custom-modal">
 

@@ -18,6 +18,10 @@
   &__right{
     height: 100vh;
     max-height: 57vh;
+    &-signUp{
+      max-height: 70vh;
+      margin-bottom: 15px;
+    }
   }
   &__left{
     max-width: 450px;
@@ -100,6 +104,9 @@
         background: #D7D7D7;
         color: #767676;
       }
+      &-signUp{
+        margin-top: 24px !important;
+      }
     }
 
     &-text{
@@ -161,8 +168,9 @@
       color: #EC0000;
       margin: 4px 0 0 6%;
 
-
-
+      &-valid{
+        color: #1BA228;
+      }
     }
 
   }

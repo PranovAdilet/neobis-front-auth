@@ -1,12 +1,12 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Field, Formik, Form} from "formik";
-import {GoEye} from "react-icons/go";
-import {initialLoginValues, schema} from "./helper";
+import {GoEye, GoEyeClosed} from "react-icons/go";
+import {initialLoginValues, schema} from "../helper";
 import {useNavigate} from "react-router-dom";
 
-
-
 const LoginForm = () => {
+
+    const [showPassword, setShowPassword] = useState(false)
 
     const navigate = useNavigate()
 
@@ -14,6 +14,9 @@ const LoginForm = () => {
         navigate('/signUp')
     }
 
+    const togglePasswordVisibility = () => {
+        setShowPassword(!showPassword);
+    }
 
 
     return (
@@ -29,8 +32,8 @@ const LoginForm = () => {
         >
             {({ errors, touched, dirty }) => {
                 const isDisabled = () => !dirty || Object.keys(errors).length > 0
-                return (
 
+                return (
                     <div className="login__right">
                         <Form className="login__form">
                             <h3 className="login__error">Неверный логин или пароль</h3>
@@ -49,9 +52,11 @@ const LoginForm = () => {
                                     placeholder="Пароль (тоже введи)"
                                     className="login__form-input"
                                     name="password"
-                                    type="password"
+                                    type={showPassword ? 'text' : 'password'}
                                 />
-                                <span className="login__icon"><GoEye/></span>
+                                <span onClick={togglePasswordVisibility} className="login__icon">
+                                    {showPassword ? <GoEyeClosed /> : <GoEye />}
+                                </span>
                             </label>
                             {errors.password && touched.password ? (
                                 <p className="login__error-text">{errors.password}</p>
