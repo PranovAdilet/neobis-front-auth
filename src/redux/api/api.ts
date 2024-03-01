@@ -1,5 +1,6 @@
 import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/query/react";
 import {
+    ICheckPresenceData,
     ILoginField, ILoginUser,
     IShippingFields,
 
@@ -20,14 +21,13 @@ export const api = createApi({
 
         signUp: builder.mutation<string, IShippingFields>({
             query: (data) => {
-                console.log(data)
                 const {password, username, email} = data
 
                 const newData = {
-                    password,
-                    username,
                     email,
-                    endpoint: "\\http://localhost:3000/confirmation?ct=\\"
+                    username,
+                    password,
+                    endpoint: "http://localhost:3000/"
                 }
 
                 return {
@@ -43,9 +43,19 @@ export const api = createApi({
                 method: 'POST',
                 body: data
             })
+        }),
+        checkPresence :  builder.mutation<boolean, ICheckPresenceData>({
+            query: (data) => {
+                console.log(data)
+                return {
+                    url: '/check-presence',
+                    method: 'POST',
+                    body: data
+                }
+            }
         })
 
     })
 })
 
-export const {useSignUpMutation, useSignInMutation} = api
+export const {useSignUpMutation, useSignInMutation, useCheckPresenceMutation} = api

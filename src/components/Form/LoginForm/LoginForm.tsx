@@ -8,6 +8,7 @@ import {useSignInMutation} from "../../../redux/api/api";
 const LoginForm = () => {
 
     const [showPassword, setShowPassword] = useState(false)
+    const [error, setError] = useState(false)
 
     const navigate = useNavigate()
 
@@ -31,6 +32,15 @@ const LoginForm = () => {
                     resetForm()
                     const response = await mutate(values);
                     console.log(response)
+                    if ('data' in response) {
+                        console.log(response)
+                    }else {
+                        setError(true)
+
+                        setTimeout(function() {
+                            setError(false)
+                        }, 5000)
+                    }
 
                 } catch (error) {
                     console.error(error)
@@ -43,7 +53,7 @@ const LoginForm = () => {
                 return (
                     <div className="login__right">
                         <Form className="login__form">
-                            <h3 className="login__error">Неверный логин или пароль</h3>
+                            {error && <h3 className="login__error">Неверный логин или пароль</h3>}
                             <h2 className="login__form-title">Вэлком бэк!</h2>
                             <Field
                                 placeholder="Введи туда-сюда логин"

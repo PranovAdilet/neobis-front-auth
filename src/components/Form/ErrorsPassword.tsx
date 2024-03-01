@@ -25,6 +25,7 @@ const ErrorsPassword = ({password} : {password : string}) => {
     const validNumber = passwordValidation.containsNumber ? '✅' : '❌'
     const validSymbol = passwordValidation.containsSymbol ? '✅' : '❌'
 
+
     return (
         <>
             <p className={`login__error-text ${validLengthClassname}`}>От 8 до 15 символов

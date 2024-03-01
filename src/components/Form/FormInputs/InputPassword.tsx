@@ -28,6 +28,7 @@ const InputPassword = ({register,password, setPassword } : IProps) => {
         setShowPassword(!showPassword);
     }
 
+
     return (
         <>
             <label className="login__form-label">

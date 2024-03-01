@@ -8,13 +8,15 @@ export interface IShippingFields extends ILoginField{
     repeatPassword: string
 }
 
-export interface IUserData{
-    email: string
-    username: string
-    password: string
-}
+
 
 export interface ILoginUser{
     accessToken: string
     refreshToken: string
+}
+
+export interface ICheckPresenceData{
+    username?: string
+    email?:string
+    endpoint: string
 }

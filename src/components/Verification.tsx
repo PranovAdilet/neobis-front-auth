@@ -11,6 +11,10 @@ const Verification = () => {
         setIsOpen(true);
     }
 
+    const handleBack = () => {
+        window.history.back()
+    }
+
     return (
         <>
             <section className="login">
@@ -37,7 +41,7 @@ const Verification = () => {
                         <h4 onClick={openModal} className="login__form-text">Письмо не пришло</h4>
                     </form>
                 </div>
-                <div className="login__verification-back">
+                <div onClick={handleBack} className="login__verification-back">
                     <span className="login__verification-icon"><MdArrowBackIosNew/></span>
                     <p className="login__verification-text">Назад</p>
                 </div>

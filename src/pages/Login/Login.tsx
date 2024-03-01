@@ -6,7 +6,6 @@ import LoginForm from "../../components/Form/LoginForm/LoginForm";
 
 const Login = () => {
 
-
     return (
         <section className="login">
             <div className="login__content">

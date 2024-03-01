@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {SubmitHandler, useForm} from "react-hook-form";
 import {IShippingFields} from "../../../interface/app.interface";
 import InputPassword from "../FormInputs/InputPassword";
@@ -6,11 +6,18 @@ import InputRepeatPassword from "../FormInputs/InputRepeatPassword";
 import InputEmail from "../FormInputs/InputEmail";
 import InputLogin from "../FormInputs/InputLogin";
 import {useSignUpMutation} from "../../../redux/api/api";
+import {useNavigate} from "react-router-dom";
 
 
 const RegistrationForm = () => {
 
     const [password, setPassword] = useState('')
+    const navigate = useNavigate()
+
+    const [isMatchesLogin, setIsMatchesLogin] = useState(false)
+    const [isMatchesEmail, setIsMatchesEmail] = useState(false)
+
+    const [isButtonEnabled, setIsButtonEnabled] = useState(false)
 
     const [mutate] = useSignUpMutation()
 
@@ -19,20 +26,32 @@ const RegistrationForm = () => {
         handleSubmit,
         formState: { errors, isValid },
         reset,
+        watch
     } = useForm<IShippingFields>({mode: "onChange"})
+
+    const isDisabled = !isValid || isMatchesEmail || isMatchesLogin
+
+    useEffect(() => {
+        const checkButtonAvailability = () => {
+            setIsButtonEnabled(!isDisabled && !isMatchesEmail && !isMatchesLogin);
+        }
+        checkButtonAvailability()
+
+    }, [isDisabled, isMatchesEmail, isMatchesLogin])
 
 
     const onSubmit: SubmitHandler<IShippingFields> = async (data) => {
-        console.log({...data})
         try {
             reset()
-            const response = await mutate(data);
+            setPassword('')
+            const response = await mutate(data)
             console.log(response)
+            navigate('/verification')
 
         } catch (error) {
             console.error(error)
         }
-    };
+    }
 
 
     return (
@@ -40,12 +59,12 @@ const RegistrationForm = () => {
             <form onSubmit={handleSubmit(onSubmit)} className="login__form">
                 <h2 className="login__form-title">Создать аккаунт Lorby</h2>
 
-                <InputEmail register={register} errors={errors}/>
-                <InputLogin errors={errors} register={register}/>
+                <InputEmail watch={watch} register={register} errors={errors} isMatchesEmail={isMatchesEmail} setIsMatchesEmail={setIsMatchesEmail}/>
+                <InputLogin watch={watch} errors={errors} register={register} isMatchesLogin={isMatchesLogin} setIsMatchesLogin={setIsMatchesLogin}/>
                 <InputPassword password={password} setPassword={setPassword} register={register}/>
                 <InputRepeatPassword password={password} register={register} errors={errors}/>
 
-                <button disabled={!isValid} type="submit" className="login__form-btn login__form-btn-signUp">Далее</button>
+                <button disabled={!isButtonEnabled} type="submit" className="login__form-btn login__form-btn-signUp">Далее</button>
             </form>
         </div>
     );

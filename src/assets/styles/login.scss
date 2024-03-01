@@ -8,19 +8,20 @@
 
   &__content{
     display: flex;
-    align-items: center;
     justify-content: center;
-
 
     column-gap: 230px;
 
   }
   &__right{
     height: 100vh;
-    max-height: 57vh;
+    max-height: 60vh;
+    padding-top: 14%;
+
     &-signUp{
-      max-height: 78vh;
-      margin-bottom: 30px;
+      padding-top: 0;
+      height: 100vh;
+
     }
   }
   &__left{
