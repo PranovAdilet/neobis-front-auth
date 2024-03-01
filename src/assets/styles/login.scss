@@ -19,8 +19,8 @@
     height: 100vh;
     max-height: 57vh;
     &-signUp{
-      max-height: 70vh;
-      margin-bottom: 15px;
+      max-height: 78vh;
+      margin-bottom: 30px;
     }
   }
   &__left{
@@ -71,7 +71,7 @@
 
       padding: 14px 48px 14px 16px;
 
-      font-size: 16px;
+      font-size: 14px;
       font-weight: 500;
       line-height: 24px;
 
@@ -81,6 +81,9 @@
 
       &::placeholder{
         color: rgb(118, 118, 118);
+      }
+      &-error{
+        color: #EC0000;
       }
     }
 
@@ -144,7 +147,7 @@
   &__error{
     color: #EC0000;
 
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 500;
     line-height: 24px;
 
@@ -162,7 +165,7 @@
     left: 0;
 
     &-text{
-      font-size: 16px;
+      font-size: 13px;
       font-weight: 500;
 
       color: #EC0000;
@@ -243,3 +246,5 @@
     }
   }
 }
+
+

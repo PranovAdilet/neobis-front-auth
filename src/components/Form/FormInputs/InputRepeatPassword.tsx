@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {GoEye, GoEyeClosed} from "react-icons/go";
 import {FieldErrors, UseFormRegister} from "react-hook-form";
-import {IShippingFields} from "../../../interface/interface";
+import {IShippingFields} from "../../../interface/app.interface";
 
 
 interface IProps{
@@ -18,12 +18,17 @@ const InputRepeatPassword = ({register, password, errors} : IProps) => {
         setShowRepeatPassword(!showRepeatPassword);
     }
 
+    const isMatchesPassword = errors.repeatPassword ? 'login__form-input-error' : ''
+
+    const isHidden = showRepeatPassword ? <GoEyeClosed/> : <GoEye/>
+
     return (
         <>
-            <label className="login__form-label">
+            <label className="login__form-label" htmlFor="repeatPassword">
                 <input
+                    id="repeatPassword"
                     placeholder="Повтори пароль"
-                    className="login__form-input"
+                    className={`login__form-input ${isMatchesPassword}`}
                     type={showRepeatPassword ? 'text' : 'password'}
                     {...register('repeatPassword', {
                         required: 'Повторите пароль',
@@ -32,8 +37,8 @@ const InputRepeatPassword = ({register, password, errors} : IProps) => {
 
                 />
                 <span onClick={toggleRepeatPasswordVisibility} className="login__icon">
-                                    {showRepeatPassword ? <GoEyeClosed/> : <GoEye/>}
-                                </span>
+                    {isHidden}
+                </span>
             </label>
             <p className="login__error-text">{errors.repeatPassword && errors.repeatPassword.message}</p>
         </>

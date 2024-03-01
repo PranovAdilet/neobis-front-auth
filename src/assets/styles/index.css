@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=M+PLUS+1p&family=Raleway:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,900&display=swap");
 .login {
   display: flex;
   justify-content: center;
@@ -16,8 +17,8 @@
   max-height: 57vh;
 }
 .login__right-signUp {
-  max-height: 70vh;
-  margin-bottom: 15px;
+  max-height: 78vh;
+  margin-bottom: 30px;
 }
 .login__left {
   max-width: 450px;
@@ -58,7 +59,7 @@
   outline: none;
   border-radius: 12px;
   padding: 14px 48px 14px 16px;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 500;
   line-height: 24px;
   background: #F8F8F8;
@@ -66,6 +67,9 @@
 }
 .login__form-input::placeholder {
   color: rgb(118, 118, 118);
+}
+.login__form-input-error {
+  color: #EC0000;
 }
 .login__form-btn {
   background: rgb(41, 41, 41);
@@ -108,7 +112,7 @@
 }
 .login__error {
   color: #EC0000;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 500;
   line-height: 24px;
   width: 100%;
@@ -121,7 +125,7 @@
   left: 0;
 }
 .login__error-text {
-  font-size: 16px;
+  font-size: 13px;
   font-weight: 500;
   color: #EC0000;
   margin: 4px 0 0 6%;
@@ -272,6 +276,40 @@
   list-style-type: none;
   scroll-behavior: smooth;
   text-decoration: none;
+}
+
+html {
+  font-family: "M PLUS 1p", sans-serif;
+}
+
+@font-face {
+  font-family: "fontello";
+  src: url("./../fontello/font/fontello.eot");
+  src: url("./../fontello/font/fontello.eot") format("embedded-opentype"), url("./../fontello/font/fontello.woff2") format("woff2"), url("./../fontello/font/fontello.woff") format("woff"), url("./../fontello/font/fontello.ttf") format("truetype"), url("../fontello/font/fontello.svg") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+input[type=password] {
+  font-size: 10px;
+}
+input[type=password]::placeholder {
+  font-size: 14px;
+}
+
+input {
+  font-family: "fontello", sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  speak: none;
+  font-variant: normal;
+  text-transform: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  letter-spacing: 2px;
+  font-size: 11px;
+}
+input::placeholder {
+  font-size: 14px;
 }
 
 /*# sourceMappingURL=index.css.map */

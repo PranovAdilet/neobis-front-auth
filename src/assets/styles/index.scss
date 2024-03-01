@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=M+PLUS+1p&family=Raleway:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,900&display=swap');
+
 @import "login";
 @import "logged";
 @import "modal";
@@ -9,7 +11,56 @@
     list-style-type: none;
     scroll-behavior: smooth;
     text-decoration: none;
+
 }
+
+html{
+    font-family: "M PLUS 1p", sans-serif;
+}
+
+
+@font-face {
+    font-family: 'fontello';
+    src: url('./../fontello/font/fontello.eot');
+    src: url('./../fontello/font/fontello.eot') format('embedded-opentype'),
+    url('./../fontello/font/fontello.woff2') format('woff2'),
+    url('./../fontello/font/fontello.woff') format('woff'),
+    url('./../fontello/font/fontello.ttf') format('truetype'),
+    url('../fontello/font/fontello.svg') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+input[type="password"] {
+    font-size: 10px;
+
+    &::placeholder{
+        font-size: 14px;
+    }
+}
+
+
+input{
+    font-family: "fontello", sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    speak: none;
+
+
+    font-variant: normal;
+    text-transform: none;
+
+
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    letter-spacing: 2px;
+    font-size: 11px;
+
+    &::placeholder{
+        font-size: 14px;
+    }
+}
+
 
 
 

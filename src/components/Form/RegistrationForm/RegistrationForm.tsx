@@ -1,15 +1,18 @@
 import React, {useState} from 'react';
 import {SubmitHandler, useForm} from "react-hook-form";
-import {IShippingFields} from "../../../interface/interface";
+import {IShippingFields} from "../../../interface/app.interface";
 import InputPassword from "../FormInputs/InputPassword";
 import InputRepeatPassword from "../FormInputs/InputRepeatPassword";
 import InputEmail from "../FormInputs/InputEmail";
 import InputLogin from "../FormInputs/InputLogin";
+import {useSignUpMutation} from "../../../redux/api/api";
 
 
 const RegistrationForm = () => {
 
     const [password, setPassword] = useState('')
+
+    const [mutate] = useSignUpMutation()
 
     const {
         register,
@@ -23,6 +26,8 @@ const RegistrationForm = () => {
         console.log({...data})
         try {
             reset()
+            const response = await mutate(data);
+            console.log(response)
 
         } catch (error) {
             console.error(error)

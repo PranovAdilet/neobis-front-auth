@@ -1,6 +1,6 @@
 import React from 'react';
 import {FieldErrors, UseFormRegister} from "react-hook-form";
-import {IShippingFields} from "../../../interface/interface";
+import {IShippingFields} from "../../../interface/app.interface";
 
 interface IProps{
     errors: FieldErrors<IShippingFields>

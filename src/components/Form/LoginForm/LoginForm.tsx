@@ -3,6 +3,7 @@ import {Field, Formik, Form} from "formik";
 import {GoEye, GoEyeClosed} from "react-icons/go";
 import {initialLoginValues, schema} from "../helper";
 import {useNavigate} from "react-router-dom";
+import {useSignInMutation} from "../../../redux/api/api";
 
 const LoginForm = () => {
 
@@ -13,21 +14,27 @@ const LoginForm = () => {
     const handleNavigate = () => {
         navigate('/signUp')
     }
+    const [mutate] = useSignInMutation()
 
     const togglePasswordVisibility = () => {
         setShowPassword(!showPassword);
     }
-
 
     return (
         <Formik
             initialValues={initialLoginValues}
             validationSchema={schema}
 
-            onSubmit={(values, {resetForm}) => {
-                console.log(values)
-                resetForm()
+            onSubmit={async (values, {resetForm}) => {
 
+                try {
+                    resetForm()
+                    const response = await mutate(values);
+                    console.log(response)
+
+                } catch (error) {
+                    console.error(error)
+                }
             }}
         >
             {({ errors, touched, dirty }) => {
@@ -42,10 +49,10 @@ const LoginForm = () => {
                                 placeholder="Введи туда-сюда логин"
                                 className="login__form-input"
                                 type="text"
-                                name="login"
+                                name="username"
                             />
-                            {errors.login && touched.login ? (
-                                <p className="login__error-text">{errors.login}</p>
+                            {errors.username && touched.username ? (
+                                <p className="login__error-text">{errors.username}</p>
                             ) : null}
                             <label className="login__form-label">
                                 <Field
