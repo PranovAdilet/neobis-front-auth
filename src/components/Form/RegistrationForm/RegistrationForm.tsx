@@ -1,12 +1,14 @@
 import React, {useEffect, useState} from 'react';
 import {SubmitHandler, useForm} from "react-hook-form";
 import {IShippingFields} from "../../../interface/app.interface";
-import InputPassword from "../FormInputs/InputPassword";
+import InputPassword from "../FormInputs/InputPassword/InputPassword";
 import InputRepeatPassword from "../FormInputs/InputRepeatPassword";
 import InputEmail from "../FormInputs/InputEmail";
 import InputLogin from "../FormInputs/InputLogin";
 import {useSignUpMutation} from "../../../redux/api/api";
 import {useNavigate} from "react-router-dom";
+import {saveUserData} from "../../../redux/reducers/user";
+import {useAppDispatch} from "../../../redux/hooks/reduxHooks";
 
 
 const RegistrationForm = () => {
@@ -20,6 +22,8 @@ const RegistrationForm = () => {
     const [isButtonEnabled, setIsButtonEnabled] = useState(false)
 
     const [mutate] = useSignUpMutation()
+
+    const dispatch = useAppDispatch()
 
     const {
         register,
@@ -46,7 +50,13 @@ const RegistrationForm = () => {
             setPassword('')
             const response = await mutate(data)
             console.log(response)
-            navigate('/verification')
+
+            const userData = {
+                username: data.username,
+                email: data.email
+            }
+            dispatch(saveUserData(userData))
+            navigate('/confirmation')
 
         } catch (error) {
             console.error(error)

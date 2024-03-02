@@ -2,8 +2,8 @@ import React, {ChangeEvent, useCallback, useState} from 'react';
 import {GoEye, GoEyeClosed} from "react-icons/go";
 import _ from "lodash";
 import {UseFormRegister} from "react-hook-form";
-import {IShippingFields} from "../../../interface/app.interface";
-import ErrorsPassword from "../ErrorsPassword";
+import {IShippingFields} from "../../../../interface/app.interface";
+import ErrorsPassword from "./ErrorsPassword";
 
 
 interface IProps{

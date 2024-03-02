@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {FieldErrors, UseFormRegister, UseFormWatch} from "react-hook-form";
 import {IShippingFields} from "../../../interface/app.interface";
 import {useCheckPresenceMutation} from "../../../redux/api/api";
-import {uniqueFieldChecker} from "../../inputChecker";
+import {uniqueFieldChecker} from "../../../assets/utils/inputChecker";
 
 interface IProps{
     errors: FieldErrors<IShippingFields>
@@ -16,10 +16,7 @@ const InputEmail = ({register, errors, watch, isMatchesEmail, setIsMatchesEmail}
 
     const [ mutate] = useCheckPresenceMutation()
 
-
-
     const [email, setEmail] = useState('')
-
     const emailField = watch("email")
 
     useEffect(() => {
@@ -44,8 +41,6 @@ const InputEmail = ({register, errors, watch, isMatchesEmail, setIsMatchesEmail}
         })
 
     }, [email, mutate, setIsMatchesEmail])
-
-    console.log(isMatchesEmail)
 
 
     return (

@@ -1,19 +1,46 @@
-import React from 'react';
-import image from "../assets/images/login.png";
+import React, {useEffect} from 'react';
+import image from "../../assets/images/login.png";
 import { MdArrowBackIosNew } from "react-icons/md";
 import Modal from "./Modal";
+import {saveToLocalStorage} from "../../assets/utils/confrirmationToken";
+import {useConfirmationQuery, useResendConfirmationMutation} from "../../redux/api/api";
+import {useSelector} from "react-redux";
+import {selectUser} from "../../redux/reducers/user";
+
 
 const Verification = () => {
 
-    const [isOpen, setIsOpen] = React.useState(false);
+    const [isOpen, setIsOpen] = React.useState(false)
+
+    const [mutate] = useResendConfirmationMutation()
+
+    const {user} = useSelector(selectUser)
 
     function openModal() {
-        setIsOpen(true);
+        setIsOpen(true)
+
+        if (user){
+            mutate(user)
+        }
     }
+
 
     const handleBack = () => {
         window.history.back()
     }
+
+    useEffect(() => {
+        saveToLocalStorage()
+    }, [])
+
+
+    const postToken = localStorage.getItem('registrationToken')
+
+
+    const {status, data} = useConfirmationQuery(postToken ?? '')
+
+    console.log(status, data)
+
 
     return (
         <>

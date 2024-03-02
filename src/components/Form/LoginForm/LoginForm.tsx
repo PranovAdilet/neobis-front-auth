@@ -1,9 +1,9 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Field, Formik, Form} from "formik";
 import {GoEye, GoEyeClosed} from "react-icons/go";
-import {initialLoginValues, schema} from "../helper";
+import {initialLoginValues, schema} from "../../../assets/utils/helper";
 import {useNavigate} from "react-router-dom";
-import {useSignInMutation} from "../../../redux/api/api";
+import {useConfirmationQuery, useSignInMutation} from "../../../redux/api/api";
 
 const LoginForm = () => {
 
@@ -20,6 +20,9 @@ const LoginForm = () => {
     const togglePasswordVisibility = () => {
         setShowPassword(!showPassword);
     }
+    useEffect(() => {
+
+    }, []);
 
     return (
         <Formik
@@ -30,16 +33,23 @@ const LoginForm = () => {
 
                 try {
                     resetForm()
+
                     const response = await mutate(values);
-                    console.log(response)
+
                     if ('data' in response) {
-                        console.log(response)
+
+                        localStorage.setItem('accessToken', response.data.accessToken)
+                        localStorage.setItem('refreshToken', response.data.refreshToken)
+                        navigate('/profile')
+
                     }else {
+
                         setError(true)
 
                         setTimeout(function() {
                             setError(false)
                         }, 5000)
+
                     }
 
                 } catch (error) {

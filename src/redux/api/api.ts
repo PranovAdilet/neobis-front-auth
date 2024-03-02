@@ -46,16 +46,28 @@ export const api = createApi({
         }),
         checkPresence :  builder.mutation<boolean, ICheckPresenceData>({
             query: (data) => {
-                console.log(data)
                 return {
                     url: '/check-presence',
                     method: 'POST',
                     body: data
                 }
             }
-        })
+        }),
+        resendConfirmation :  builder.mutation<string, ICheckPresenceData>({
+            query: (data) => {
+                return {
+                    url: '/resend-confirmation',
+                    method: 'POST',
+                    body: data
+                }
+            }
+        }),
+        confirmation: builder.query<string, string>({
+            query: (end) => `/${end}`
+        }),
 
     })
 })
 
-export const {useSignUpMutation, useSignInMutation, useCheckPresenceMutation} = api
+export const {useSignUpMutation, useSignInMutation, useCheckPresenceMutation, useConfirmationQuery, useResendConfirmationMutation} = api
+

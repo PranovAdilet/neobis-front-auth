@@ -3,7 +3,7 @@ import {FieldErrors, UseFormRegister, UseFormWatch} from "react-hook-form";
 import {IShippingFields} from "../../../interface/app.interface";
 
 import {useCheckPresenceMutation} from "../../../redux/api/api";
-import {uniqueFieldChecker} from "../../inputChecker";
+import {uniqueFieldChecker} from "../../../assets/utils/inputChecker";
 
 interface IProps{
     errors: FieldErrors<IShippingFields>
@@ -24,7 +24,7 @@ const InputLogin = ({register, errors, watch, isMatchesLogin, setIsMatchesLogin}
 
     useEffect(() => {
         const timer = setTimeout(() => {
-            setLogin(loginField);
+            setLogin(loginField)
         }, 700);
 
         return () => clearTimeout(timer);
@@ -43,7 +43,6 @@ const InputLogin = ({register, errors, watch, isMatchesLogin, setIsMatchesLogin}
 
     }, [login, mutate, setIsMatchesLogin])
 
-    console.log(isMatchesLogin, login)
 
     return (
         <>
