@@ -3,7 +3,7 @@ import {Field, Formik, Form} from "formik";
 import {GoEye, GoEyeClosed} from "react-icons/go";
 import {initialLoginValues, schema} from "../../../assets/utils/helper";
 import {useNavigate} from "react-router-dom";
-import {useConfirmationQuery, useSignInMutation} from "../../../redux/api/api";
+import {useSignInMutation} from "../../../redux/api/api";
 
 const LoginForm = () => {
 
