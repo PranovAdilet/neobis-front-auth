@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {FieldErrors, UseFormRegister, UseFormWatch} from "react-hook-form";
 import {IShippingFields} from "../../../interface/app.interface";
 import {useCheckPresenceMutation} from "../../../redux/api/api";
-import {uniqueFieldChecker} from "../../../assets/utils/inputChecker";
+import {uniqueFieldChecker} from "../../../utils/inputChecker";
 
 interface IProps{
     errors: FieldErrors<IShippingFields>
@@ -21,11 +21,11 @@ const InputEmail = ({register, errors, watch, isMatchesEmail, setIsMatchesEmail}
 
     useEffect(() => {
         const timer = setTimeout(() => {
-            setEmail(emailField);
-        }, 700);
+            setEmail(emailField)
+        }, 700)
 
-        return () => clearTimeout(timer);
-    }, [emailField]);
+        return () => clearTimeout(timer)
+    }, [emailField])
 
 
     useEffect(() => {

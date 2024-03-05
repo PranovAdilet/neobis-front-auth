@@ -3,7 +3,7 @@ import {FieldErrors, UseFormRegister, UseFormWatch} from "react-hook-form";
 import {IShippingFields} from "../../../interface/app.interface";
 
 import {useCheckPresenceMutation} from "../../../redux/api/api";
-import {uniqueFieldChecker} from "../../../assets/utils/inputChecker";
+import {uniqueFieldChecker} from "../../../utils/inputChecker";
 
 interface IProps{
     errors: FieldErrors<IShippingFields>

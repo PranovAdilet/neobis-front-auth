@@ -31,6 +31,7 @@ const RegistrationForm = () => {
         formState: { errors, isValid },
         reset,
         watch
+
     } = useForm<IShippingFields>({mode: "onChange"})
 
     const isDisabled = !isValid || isMatchesEmail || isMatchesLogin
@@ -46,15 +47,14 @@ const RegistrationForm = () => {
 
     const onSubmit: SubmitHandler<IShippingFields> = async (data) => {
         try {
-            reset()
             setPassword('')
-            const response = await mutate(data)
-            console.log(response)
+            await mutate(data)
 
             const userData = {
                 username: data.username,
                 email: data.email
             }
+            reset()
             dispatch(saveUserData(userData))
             navigate('/confirmation')
 

@@ -1,46 +1,51 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import image from "../../assets/images/login.png";
 import { MdArrowBackIosNew } from "react-icons/md";
 import Modal from "./Modal";
-import {saveToLocalStorage} from "../../assets/utils/confrirmationToken";
-import {useConfirmationQuery, useResendConfirmationMutation} from "../../redux/api/api";
-import {useSelector} from "react-redux";
+import {useResendConfirmationMutation} from "../../redux/api/api";
 import {selectUser} from "../../redux/reducers/user";
+import {useSearchParams} from "react-router-dom";
+import ConfirmationModal from "../ConfirmationModal";
+import {useAppSelector} from "../../redux/hooks/reduxHooks";
 
 
-const Verification = () => {
+const Confirmation = () => {
 
     const [isOpen, setIsOpen] = React.useState(false)
+    const [isConfirmed, setIsConfirmed] = useState(false)
+
+    const [searchParams] = useSearchParams()
+
+    const token = searchParams.get('ct')
+
+    useEffect(() => {
+
+        if (token){
+            setIsConfirmed(true)
+        }else {
+            setIsConfirmed(false)
+        }
+
+    }, [token])
 
     const [mutate] = useResendConfirmationMutation()
 
-    const {user} = useSelector(selectUser)
+    const {user} = useAppSelector(selectUser)
+
 
     function openModal() {
-        setIsOpen(true)
 
         if (user){
             mutate(user)
         }
+
+        setIsOpen(true)
     }
 
 
     const handleBack = () => {
         window.history.back()
     }
-
-    useEffect(() => {
-        saveToLocalStorage()
-    }, [])
-
-
-    const postToken = localStorage.getItem('registrationToken')
-
-
-    const {status, data} = useConfirmationQuery(postToken ?? '')
-
-    console.log(status, data)
-
 
     return (
         <>
@@ -76,8 +81,11 @@ const Verification = () => {
             {
                 isOpen && <Modal isOpen={isOpen} setIsOpen={setIsOpen}/>
             }
+            {
+                isConfirmed && <ConfirmationModal token={token ?? '' } isOpen={isConfirmed} setIsOpen={setIsConfirmed}/>
+            }
         </>
     );
 };
 
-export default Verification;
+export default Confirmation;

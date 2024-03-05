@@ -1,10 +1,14 @@
-import React from 'react';
+import React, {useState} from 'react';
 import image from "../../assets/images/login.png"
 import LoginForm from "../../components/Form/LoginForm/LoginForm";
+import ForgotPassword from "../ForgotPassword/ForgotPassword";
+
 
 
 
 const Login = () => {
+
+    const [forgotPasswordState, setForgotPasswordState] = useState(false)
 
     return (
         <section className="login">
@@ -17,7 +21,9 @@ const Login = () => {
                         <p className="login__left-text">Твой личный репетитор</p>
                     </div>
                 </div>
-                <LoginForm/>
+                {
+                    !forgotPasswordState ? <LoginForm setForgotPassword={setForgotPasswordState}/> : <ForgotPassword setForgotPassword={setForgotPasswordState}/>
+                }
             </div>
         </section>
     );

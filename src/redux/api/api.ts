@@ -63,7 +63,7 @@ export const api = createApi({
             }
         }),
         confirmation: builder.query<string, string>({
-            query: (end) => `/${end}`
+            query: (end) => `/confirmation?ct=Bearer ${end}`
         }),
 
     })

@@ -80,7 +80,7 @@
   cursor: pointer;
   padding: 16px;
   width: 100%;
-  margin-top: 48px;
+  margin-top: 28px;
 }
 .login__form-btn:disabled {
   background: #D7D7D7;
@@ -96,6 +96,15 @@
   color: #292929;
   text-align: center;
   margin-top: 48px;
+  cursor: pointer;
+}
+.login__form-forgot {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  color: #292929;
+  text-align: center;
+  margin-top: 18px;
   cursor: pointer;
 }
 .login__form-label {

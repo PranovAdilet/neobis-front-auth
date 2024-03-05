@@ -5,7 +5,7 @@ import {
     FetchBaseQueryMeta,
     MutationDefinition
 } from '@reduxjs/toolkit/query'
-import {ICheckPresenceData} from "../../interface/app.interface";
+import {ICheckPresenceData} from "../interface/app.interface";
 import {MutationTrigger} from "@reduxjs/toolkit/dist/query/react/buildHooks";
 
 

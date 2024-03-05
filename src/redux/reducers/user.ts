@@ -7,12 +7,14 @@ interface userState {
     user: ICheckPresenceData | null,
     status: "empty" | "loading" | "rejected" | "resolve"
     error: string
+    isAuth: boolean
 }
 
 const initialState: userState = {
     user: null,
     status: "empty",
-    error: ""
+    error: "",
+    isAuth: false
 }
 
 export const userSlice = createSlice({
@@ -26,11 +28,14 @@ export const userSlice = createSlice({
                 state.user.endpoint = 'http://localhost:3000/'
 
             }
+        },
+        isAuthUser: (state) => {
+            state.isAuth = true
         }
     },
 })
 
-export const {saveUserData} = userSlice.actions
+export const {saveUserData, isAuthUser} = userSlice.actions
 
 
 export default userSlice.reducer
