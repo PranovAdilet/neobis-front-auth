@@ -29,8 +29,8 @@ export const userSlice = createSlice({
 
             }
         },
-        isAuthUser: (state) => {
-            state.isAuth = true
+        isAuthUser: (state, action) => {
+            state.isAuth = action.payload
         }
     },
 })

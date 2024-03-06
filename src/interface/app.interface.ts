@@ -20,3 +20,14 @@ export interface ICheckPresenceData{
     email?:string
     endpoint: string
 }
+
+
+export interface IResetPassword{
+    rpt: string
+    password: string
+}
+
+export interface IUser{
+    username: string
+    email: string
+}

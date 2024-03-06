@@ -8,6 +8,7 @@ const Main = () => {
     const accessToken = localStorage.getItem('accessToken')
     const refreshToken = localStorage.getItem('refreshToken')
 
+
     useEffect(() => {
         if (accessToken){
             navigate('/profile')

@@ -1,6 +1,8 @@
 import React from 'react';
 import Modal from 'react-modal/';
 import {useNavigate} from "react-router-dom";
+import {useAppDispatch} from "../../redux/hooks/reduxHooks";
+import {isAuthUser} from "../../redux/reducers/user";
 
 
 Modal.setAppElement('#root')
@@ -13,6 +15,7 @@ interface IProps{
 function ModalLogout({isOpen, setIsOpen} : IProps) {
 
     const navigate = useNavigate()
+    const dispatch = useAppDispatch()
 
     function closeModal() {
         setIsOpen(false)
@@ -22,6 +25,7 @@ function ModalLogout({isOpen, setIsOpen} : IProps) {
 
         localStorage.removeItem('accessToken')
         localStorage.removeItem('refreshToken')
+        dispatch(isAuthUser(false))
         navigate('/')
     }
 

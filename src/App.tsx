@@ -7,6 +7,7 @@ import Success from "./components/Logged/Logged";
 import Main from "./pages/Main/Main";
 import {useAppSelector} from "./redux/hooks/reduxHooks";
 import {selectUser} from "./redux/reducers/user";
+import ResetPassword from "./pages/ResetPassword/ResetPassword";
 
 
 
@@ -19,12 +20,13 @@ function App() {
             <Routes>
                 {
                     isAuth ? <>
-                        <Route path="/confirmation" element={<Confirmation/>}/>
                         <Route path="/profile" element={<Success/>}/>
-                        <Route path="*" element={<Navigate to="/main" />}/>
+                        <Route path="*" element={<Navigate to="/" />}/>
                     </> : <>
                         <Route path="/signUp" element={<Registration/>}/>
                         <Route path="/signIn" element={<Login/>}/>
+                        <Route path="/confirmation" element={<Confirmation/>}/>
+                        <Route path="/reset-password" element={<ResetPassword/>}/>
                         <Route path="*" element={<Navigate to="/signIn" />}/>
                     </>
                 }

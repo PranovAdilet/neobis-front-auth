@@ -36,14 +36,15 @@ const LoginForm = ({setForgotPassword} : IProps) => {
     const onSubmit = async (values : ILoginField, {resetForm}: {resetForm : () => void} ) => {
         try {
 
-            const response = await mutate(values);
+            const response = await mutate(values)
 
             if ('data' in response) {
 
                 localStorage.setItem('accessToken', response.data.accessToken)
                 localStorage.setItem('refreshToken', response.data.refreshToken)
 
-                dispatch(isAuthUser())
+                dispatch(isAuthUser(true))
+
                 navigate('/profile')
 
             }else {
@@ -57,8 +58,6 @@ const LoginForm = ({setForgotPassword} : IProps) => {
         }
     }
 
-
-
     return (
         <Formik
             initialValues={initialLoginValues}
@@ -71,7 +70,9 @@ const LoginForm = ({setForgotPassword} : IProps) => {
                 return (
                     <div className="login__right">
                         <Form className="login__form">
+
                             <ToastContainer />
+
                             <h2 className="login__form-title">Вэлком бэк!</h2>
                             <Field
                                 placeholder="Введи туда-сюда логин"

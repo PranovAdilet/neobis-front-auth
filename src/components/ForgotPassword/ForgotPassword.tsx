@@ -1,5 +1,6 @@
-import React from 'react';
+import React, {ChangeEvent, useState} from 'react';
 import {MdArrowBackIosNew} from "react-icons/md";
+import {useForgotPasswordMutation} from "../../redux/api/api";
 
 
 interface IProps {
@@ -9,6 +10,23 @@ const ForgotPassword = ({setForgotPassword} : IProps) => {
 
     const handleBack = () => {
         setForgotPassword(false)
+    }
+    // const {user} = useAppSelector(selectUser)
+
+
+    const handleChangeInput = (e : ChangeEvent<HTMLInputElement>) => setUsername(e.target.value)
+
+    const [username, setUsername] = useState('')
+
+
+    const [forgotPassword] = useForgotPasswordMutation()
+
+    const handleForgotPassword = async () => {
+        const newData = {
+            username,
+            endpoint: "http://localhost:3000/"
+        }
+        await forgotPassword(newData)
     }
 
     return (
@@ -20,9 +38,11 @@ const ForgotPassword = ({setForgotPassword} : IProps) => {
                     placeholder="Введите адрес электронной почты"
                     className="login__form-input"
                     type="text"
+                    value={username}
+                    onChange={handleChangeInput}
                 />
 
-                <button type="submit" className="login__form-btn">Далее</button>
+                <button onClick={handleForgotPassword} type="button" className="login__form-btn">Далее</button>
             </form>
             <div onClick={handleBack} className="login__verification-back">
                 <span className="login__verification-icon"><MdArrowBackIosNew/></span>

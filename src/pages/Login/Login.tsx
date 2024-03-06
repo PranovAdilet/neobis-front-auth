@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import image from "../../assets/images/login.png"
 import LoginForm from "../../components/Form/LoginForm/LoginForm";
-import ForgotPassword from "../ForgotPassword/ForgotPassword";
+import ForgotPassword from "../../components/ForgotPassword/ForgotPassword";
 
 
 

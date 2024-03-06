@@ -1,13 +1,18 @@
 import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/query/react";
 import {
     ICheckPresenceData,
-    ILoginField, ILoginUser,
-    IShippingFields,
+    ILoginField, ILoginUser, IResetPassword,
+    IShippingFields, IUser,
 
 } from "../../interface/app.interface";
 
+const token = localStorage.getItem('accessToken');
 
-const API_URL = 'https://lorby-production.up.railway.app/v1/auth'
+const headers = {
+    Authorization: 'Bearer' + token
+}
+
+const API_URL = 'https://lorby-production.up.railway.app/v1'
 
 export const api = createApi({
     reducerPath: "api",
@@ -31,7 +36,7 @@ export const api = createApi({
                 }
 
                 return {
-                    url: '/registration',
+                    url: '/auth/registration',
                     method: 'POST',
                     body: newData,
                 };
@@ -39,15 +44,15 @@ export const api = createApi({
         }),
         signIn: builder.mutation<ILoginUser, ILoginField>({
             query: (data) => ({
-                url: '/login',
+                url: '/auth/login',
                 method: 'POST',
                 body: data
             })
         }),
-        checkPresence :  builder.mutation<boolean, ICheckPresenceData>({
+        checkPresence : builder.mutation<boolean, ICheckPresenceData>({
             query: (data) => {
                 return {
-                    url: '/check-presence',
+                    url: '/auth/check-presence',
                     method: 'POST',
                     body: data
                 }
@@ -56,18 +61,59 @@ export const api = createApi({
         resendConfirmation :  builder.mutation<string, ICheckPresenceData>({
             query: (data) => {
                 return {
-                    url: '/resend-confirmation',
+                    url: '/auth/resend-confirmation',
                     method: 'POST',
                     body: data
                 }
             }
         }),
-        confirmation: builder.query<string, string>({
-            query: (end) => `/confirmation?ct=Bearer ${end}`
+        confirmation: builder.mutation<string, string>({
+            query: (token) => {
+                return {
+                    url: `/auth/confirmation?ct=${token}`,
+                    method: "PUT"
+                }
+            }
         }),
+        forgotPassword: builder.mutation<string, ICheckPresenceData>({
+            query: (data) => {
+
+                return {
+                    url: '/auth/forgot-password',
+                    method: "POST",
+                    body: data
+                }
+            }
+        }),
+        resetPassword: builder.mutation<string, IResetPassword>({
+
+            query: (data) => {
+
+                return {
+                    url: `/auth/reset-password?rpt=${data.rpt}`,
+                    method: "PUT",
+                    body: {
+                        password: data.password
+                    }
+                }
+            }
+        }),
+
+        getUser: builder.query<string, IUser>({
+            query: () => {
+                return {
+                    url: `/users`,
+                    headers: headers,
+                    method: "GET"
+                }
+            }
+        })
 
     })
 })
 
-export const {useSignUpMutation, useSignInMutation, useCheckPresenceMutation, useConfirmationQuery, useResendConfirmationMutation} = api
+export const {useSignUpMutation, useResetPasswordMutation,
+    useForgotPasswordMutation, useGetUserQuery,
+    useSignInMutation, useCheckPresenceMutation,
+    useConfirmationMutation, useResendConfirmationMutation} = api
 

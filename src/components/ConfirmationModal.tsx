@@ -1,6 +1,7 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import Modal from 'react-modal/';
-import {useConfirmationQuery} from "../redux/api/api";
+import {useConfirmationMutation} from "../redux/api/api";
+import {useNavigate} from "react-router-dom";
 
 
 Modal.setAppElement('#root')
@@ -13,12 +14,18 @@ interface IProps{
 
 function ConfirmationModal({setIsOpen, isOpen, token} : IProps) {
 
-    const {status, data} = useConfirmationQuery(token)
+    const [mutate, {data, status}] = useConfirmationMutation()
+
+    const navigate = useNavigate()
+
+    useEffect(() => {
+        mutate(token)
+    }, [mutate, token]);
 
     console.log(data, status)
 
     function closeModal() {
-        setIsOpen(false)
+        navigate('/signIn')
     }
 
 
