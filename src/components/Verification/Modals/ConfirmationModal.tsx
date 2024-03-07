@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import Modal from 'react-modal/';
-import {useConfirmationMutation} from "../redux/api/api";
+import {useConfirmationMutation} from "../../../redux/api/api";
 import {useNavigate} from "react-router-dom";
 
 

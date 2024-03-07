@@ -18,6 +18,7 @@ function App() {
     return (
         <div className="App">
             <Routes>
+                <Route path="/" element={<Main/>}/>
                 {
                     isAuth ? <>
                         <Route path="/profile" element={<Success/>}/>
@@ -30,7 +31,7 @@ function App() {
                         <Route path="*" element={<Navigate to="/signIn" />}/>
                     </>
                 }
-                <Route path="/" element={<Main/>}/>
+
             </Routes>
         </div>
     );

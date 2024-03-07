@@ -1,10 +1,12 @@
 import React, {useState} from 'react';
 import image from "../../assets/images/login.png"
-import ModalLogout from "./ModalLogout";
+import ModalLogout from "./ModalLogout/ModalLogout";
+
 
 const Logged = () => {
 
     const [isOpen, setIsOpen] = useState(false)
+
 
     const handleClick = () => setIsOpen(true)
 

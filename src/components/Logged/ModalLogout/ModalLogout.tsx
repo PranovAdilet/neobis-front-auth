@@ -1,8 +1,9 @@
 import React from 'react';
 import Modal from 'react-modal/';
 import {useNavigate} from "react-router-dom";
-import {useAppDispatch} from "../../redux/hooks/reduxHooks";
-import {isAuthUser} from "../../redux/reducers/user";
+import {useAppDispatch} from "../../../redux/hooks/reduxHooks";
+import {isAuthUser} from "../../../redux/reducers/user";
+import {useRevokeTokenMutation} from "../../../redux/api/api";
 
 
 Modal.setAppElement('#root')
@@ -17,15 +18,30 @@ function ModalLogout({isOpen, setIsOpen} : IProps) {
     const navigate = useNavigate()
     const dispatch = useAppDispatch()
 
+    const [mutate] = useRevokeTokenMutation()
+
     function closeModal() {
         setIsOpen(false)
     }
 
-    const handleLogout = () => {
+    const handleLogout = async () => {
+        const accessToken = localStorage.getItem('accessToken')
+        const refreshToken = localStorage.getItem('refreshToken')
+
+
+        if (accessToken && refreshToken){
+            const tokens = {
+                accessToken,
+                refreshToken
+            }
+
+            await mutate(tokens)
+        }
 
         localStorage.removeItem('accessToken')
         localStorage.removeItem('refreshToken')
         dispatch(isAuthUser(false))
+
         navigate('/')
     }
 

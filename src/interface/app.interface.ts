@@ -31,3 +31,10 @@ export interface IUser{
     username: string
     email: string
 }
+
+export interface IError{
+    data: string
+    error: string
+    originalStatus: number
+    status: string
+}

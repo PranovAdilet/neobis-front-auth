@@ -1,11 +1,11 @@
 import React, {useEffect, useState} from 'react';
 import image from "../../assets/images/login.png";
 import { MdArrowBackIosNew } from "react-icons/md";
-import Modal from "./Modal";
+import Modal from "./Modals/Modal";
 import {useResendConfirmationMutation} from "../../redux/api/api";
 import {selectUser} from "../../redux/reducers/user";
 import {useSearchParams} from "react-router-dom";
-import ConfirmationModal from "../ConfirmationModal";
+import ConfirmationModal from "./Modals/ConfirmationModal";
 import {useAppSelector} from "../../redux/hooks/reduxHooks";
 
 

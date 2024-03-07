@@ -1,16 +1,11 @@
 import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/query/react";
 import {
-    ICheckPresenceData,
+    ICheckPresenceData, IError,
     ILoginField, ILoginUser, IResetPassword,
     IShippingFields, IUser,
 
 } from "../../interface/app.interface";
 
-const token = localStorage.getItem('accessToken');
-
-const headers = {
-    Authorization: 'Bearer' + token
-}
 
 const API_URL = 'https://lorby-production.up.railway.app/v1'
 
@@ -99,12 +94,37 @@ export const api = createApi({
             }
         }),
 
-        getUser: builder.query<string, IUser>({
+        getUser: builder.query<IUser, void>({
             query: () => {
+                const token = localStorage.getItem('accessToken')
+
+                const headers = {
+                    Authorization: 'Bearer ' + token
+                }
+
+
                 return {
                     url: `/users`,
                     headers: headers,
                     method: "GET"
+                }
+            }
+        }),
+        revokeToken: builder.mutation<string, ILoginUser>({
+            query: (data) => {
+                return {
+                    url: "/auth/revoke-token",
+                    method: "POST",
+                    body: data
+                }
+            }
+        }),
+        refreshToken: builder.mutation<IError, string>({
+            query: (token) => {
+                return {
+                    url: "/auth/refresh-token",
+                    method: "POST",
+                    body: token
                 }
             }
         })
@@ -115,5 +135,7 @@ export const api = createApi({
 export const {useSignUpMutation, useResetPasswordMutation,
     useForgotPasswordMutation, useGetUserQuery,
     useSignInMutation, useCheckPresenceMutation,
-    useConfirmationMutation, useResendConfirmationMutation} = api
+    useConfirmationMutation, useResendConfirmationMutation,
+    useRevokeTokenMutation, useRefreshTokenMutation} = api
 
+export default api.reducer;

@@ -22,11 +22,9 @@ export const userSlice = createSlice({
     initialState,
     reducers: {
         saveUserData: (state, action) => {
-            if (state.user){
-                state.user.username = action.payload.username
-                state.user.email = action.payload.email
-                state.user.endpoint = 'http://localhost:3000/'
-
+            state.user = {
+                ...action.payload,
+                endpoint: 'http://localhost:3000/'
             }
         },
         isAuthUser: (state, action) => {

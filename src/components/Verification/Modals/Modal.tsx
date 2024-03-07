@@ -1,8 +1,8 @@
 import React, {useEffect} from 'react';
 import Modal from 'react-modal/';
-import {useResendConfirmationMutation} from "../../redux/api/api";
+import {useResendConfirmationMutation} from "../../../redux/api/api";
 import {useSelector} from "react-redux";
-import {selectUser} from "../../redux/reducers/user";
+import {selectUser} from "../../../redux/reducers/user";
 
 Modal.setAppElement('#root')
 
@@ -13,7 +13,7 @@ interface IProps{
 
 function CustomModal({setIsOpen, isOpen} : IProps) {
 
-    const [mutate, {data}] = useResendConfirmationMutation()
+    const [mutate] = useResendConfirmationMutation()
 
     const {user} = useSelector(selectUser)
 
@@ -26,7 +26,7 @@ function CustomModal({setIsOpen, isOpen} : IProps) {
             mutate(user)
         }
     }, [user, mutate])
-    console.log(data)
+
 
     return (
         <div className="custom-modal">
