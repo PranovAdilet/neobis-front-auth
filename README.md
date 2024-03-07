@@ -37,7 +37,7 @@ The project utilizes the following technologies:
 
 4. **Run the project**
 
-After installing all dependencies, you can run the project using the command:
+   After installing all dependencies, you can run the project using the command:
 
    ```
    npm start
