@@ -4,7 +4,7 @@ import {GoEye, GoEyeClosed} from "react-icons/go";
 import {initialLoginValues, schema} from "../../../utils/helper";
 import {useNavigate} from "react-router-dom";
 import {useSignInMutation} from "../../../redux/api/api";
-import {toast, ToastContainer} from "react-toastify";
+import {toast} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import {ILoginField} from "../../../interface/app.interface";
 import {useAppDispatch} from "../../../redux/hooks/reduxHooks";
@@ -70,9 +70,6 @@ const LoginForm = ({setForgotPassword} : IProps) => {
                 return (
                     <div className="login__right">
                         <Form className="login__form">
-
-                            <ToastContainer />
-
                             <h2 className="login__form-title">Вэлком бэк!</h2>
                             <Field
                                 placeholder="Введи туда-сюда логин"

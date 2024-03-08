@@ -10,9 +10,10 @@ interface IProps{
     register: UseFormRegister<IShippingFields>
     password: string
     setPassword: (value : string) => void
+    placeholder: string
 }
 
-const InputPassword = ({register,password, setPassword } : IProps) => {
+const InputPassword = ({register,password, setPassword, placeholder } : IProps) => {
 
     const [showPassword, setShowPassword] = useState(false)
 
@@ -33,7 +34,7 @@ const InputPassword = ({register,password, setPassword } : IProps) => {
         <>
             <label className="login__form-label">
                 <input
-                    placeholder="Создай пароль"
+                    placeholder={placeholder}
                     className="login__form-input"
                     type={showPassword ? 'text' : 'password'}
                     {...register('password', {

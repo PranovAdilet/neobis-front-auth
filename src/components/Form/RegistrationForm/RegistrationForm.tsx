@@ -71,7 +71,7 @@ const RegistrationForm = () => {
 
                 <InputEmail watch={watch} register={register} errors={errors} isMatchesEmail={isMatchesEmail} setIsMatchesEmail={setIsMatchesEmail}/>
                 <InputLogin watch={watch} errors={errors} register={register} isMatchesLogin={isMatchesLogin} setIsMatchesLogin={setIsMatchesLogin}/>
-                <InputPassword password={password} setPassword={setPassword} register={register}/>
+                <InputPassword placeholder="Создай пароль" password={password} setPassword={setPassword} register={register}/>
                 <InputRepeatPassword password={password} register={register} errors={errors}/>
 
                 <button disabled={!isButtonEnabled} type="submit" className="login__form-btn login__form-btn-signUp">Далее</button>

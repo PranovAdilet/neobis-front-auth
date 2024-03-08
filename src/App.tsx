@@ -8,6 +8,7 @@ import Main from "./pages/Main/Main";
 import {useAppSelector} from "./redux/hooks/reduxHooks";
 import {selectUser} from "./redux/reducers/user";
 import ResetPassword from "./pages/ResetPassword/ResetPassword";
+import {ToastContainer} from "react-toastify";
 
 
 
@@ -17,6 +18,7 @@ function App() {
 
     return (
         <div className="App">
+            <ToastContainer />
             <Routes>
                 <Route path="/" element={<Main/>}/>
                 {

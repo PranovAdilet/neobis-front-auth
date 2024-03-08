@@ -28,7 +28,7 @@ const InputLogin = ({register, errors, watch, isMatchesLogin, setIsMatchesLogin}
         }, 700);
 
         return () => clearTimeout(timer);
-    }, [loginField]);
+    }, [loginField])
 
     useEffect(() => {
         uniqueFieldChecker({

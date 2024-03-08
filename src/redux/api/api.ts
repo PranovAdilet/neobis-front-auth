@@ -102,7 +102,6 @@ export const api = createApi({
                     Authorization: 'Bearer ' + token
                 }
 
-
                 return {
                     url: `/users`,
                     headers: headers,

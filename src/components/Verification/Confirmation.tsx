@@ -1,11 +1,11 @@
 import React, {useEffect, useState} from 'react';
 import image from "../../assets/images/login.png";
 import { MdArrowBackIosNew } from "react-icons/md";
-import Modal from "./Modals/Modal";
+import Modal from "./Modals/ConfirmModal";
 import {useResendConfirmationMutation} from "../../redux/api/api";
 import {selectUser} from "../../redux/reducers/user";
 import {useSearchParams} from "react-router-dom";
-import ConfirmationModal from "./Modals/ConfirmationModal";
+import ConfirmedModal from "./Modals/ConfirmedModal";
 import {useAppSelector} from "../../redux/hooks/reduxHooks";
 
 
@@ -82,7 +82,7 @@ const Confirmation = () => {
                 isOpen && <Modal isOpen={isOpen} setIsOpen={setIsOpen}/>
             }
             {
-                isConfirmed && <ConfirmationModal token={token ?? '' } isOpen={isConfirmed} setIsOpen={setIsConfirmed}/>
+                isConfirmed && <ConfirmedModal token={token ?? '' } isOpen={isConfirmed} setIsOpen={setIsConfirmed}/>
             }
         </>
     );
