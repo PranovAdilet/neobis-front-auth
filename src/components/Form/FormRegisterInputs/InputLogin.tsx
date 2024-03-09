@@ -33,6 +33,7 @@ const InputLogin = ({register, errors, watch, isMatchesLogin, setIsMatchesLogin,
         return () => {
             clearTimeout(timer)
         }
+        // eslint-disable-next-line
     }, [loginField])
 
     useEffect(() => {
@@ -48,7 +49,7 @@ const InputLogin = ({register, errors, watch, isMatchesLogin, setIsMatchesLogin,
 
         setIsDisabled(false)
 
-
+// eslint-disable-next-line
     }, [login, mutate, setIsMatchesLogin])
 
 

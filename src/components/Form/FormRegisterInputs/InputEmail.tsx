@@ -32,7 +32,7 @@ const InputEmail = ({register, errors, watch, isMatchesEmail, setIsMatchesEmail,
         return () => {
             clearTimeout(timer)
         }
-
+// eslint-disable-next-line
     }, [emailField])
 
 
@@ -48,6 +48,7 @@ const InputEmail = ({register, errors, watch, isMatchesEmail, setIsMatchesEmail,
         })
 
         setIsDisabled(false)
+        // eslint-disable-next-line
     }, [email, mutate, setIsMatchesEmail])
 
 
