@@ -2,7 +2,7 @@ import React from 'react';
 import {useNavigate} from "react-router-dom";
 import {useAppDispatch} from "../../../redux/hooks/reduxHooks";
 import {isAuthUser} from "../../../redux/reducers/user";
-import {useRevokeTokenMutation} from "../../../redux/api/api";
+import {useRevokeTokenMutation} from "../../../api/api";
 import CustomModal from "../../Modal/Modal";
 
 

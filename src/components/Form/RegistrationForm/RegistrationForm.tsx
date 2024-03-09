@@ -1,14 +1,15 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {SubmitHandler, useForm} from "react-hook-form";
 import {IShippingFields} from "../../../interface/app.interface";
-import InputPassword from "../FormInputs/InputPassword/InputPassword";
-import InputRepeatPassword from "../FormInputs/InputRepeatPassword";
-import InputEmail from "../FormInputs/InputEmail";
-import InputLogin from "../FormInputs/InputLogin";
-import {useSignUpMutation} from "../../../redux/api/api";
+import InputPassword from "../FormRegisterInputs/InputPassword/InputPassword";
+import InputRepeatPassword from "../FormRegisterInputs/InputRepeatPassword";
+import InputEmail from "../FormRegisterInputs/InputEmail";
+import InputLogin from "../FormRegisterInputs/InputLogin";
+import {useSignUpMutation} from "../../../api/api";
 import {useNavigate} from "react-router-dom";
 import {saveUserData} from "../../../redux/reducers/user";
 import {useAppDispatch} from "../../../redux/hooks/reduxHooks";
+import {toast} from "react-toastify";
 
 
 const RegistrationForm = () => {
@@ -34,47 +35,62 @@ const RegistrationForm = () => {
 
     } = useForm<IShippingFields>({mode: "onChange"})
 
-    const isDisabled = !isValid || isMatchesEmail || isMatchesLogin
-
-    useEffect(() => {
-        const checkButtonAvailability = () => {
-            setIsButtonEnabled(!isDisabled && !isMatchesEmail && !isMatchesLogin);
-        }
-        checkButtonAvailability()
-
-    }, [isDisabled, isMatchesEmail, isMatchesLogin])
-
 
     const onSubmit: SubmitHandler<IShippingFields> = async (data) => {
         try {
             setPassword('')
-            await mutate(data)
+            await mutate(data).then(_ => {
+                    const userData = {
+                        username: data.username,
+                        email: data.email
+                    }
+                    reset()
+                    dispatch(saveUserData(userData))
+                    navigate('/confirmation')
+                })
+                .catch(error => toast.error(`Ошибка: ${error}`))
 
-            const userData = {
-                username: data.username,
-                email: data.email
-            }
-            reset()
-            dispatch(saveUserData(userData))
-            navigate('/confirmation')
 
         } catch (error) {
-            console.error(error)
+            toast.error(`Ошибка: ${error}`)
         }
     }
+
+    const isDisabled = !isValid || isMatchesEmail || isMatchesLogin || isButtonEnabled
 
 
     return (
         <div className="login__right login__right-signUp">
             <form onSubmit={handleSubmit(onSubmit)} className="login__form">
                 <h2 className="login__form-title">Создать аккаунт Lorby</h2>
+                <InputEmail
+                    setIsDisabled={setIsButtonEnabled}
+                    watch={watch}
+                    register={register}
+                    errors={errors}
+                    isMatchesEmail={isMatchesEmail}
+                    setIsMatchesEmail={setIsMatchesEmail}
+                />
+                <InputLogin
+                    setIsDisabled={setIsButtonEnabled}
+                    watch={watch}
+                    errors={errors}
+                    register={register}
+                    isMatchesLogin={isMatchesLogin}
+                    setIsMatchesLogin={setIsMatchesLogin}
+                />
+                <InputPassword
+                    placeholder="Создай пароль"
+                    password={password}
+                    setPassword={setPassword} register={register}
+                />
+                <InputRepeatPassword
+                    password={password}
+                    register={register}
+                    errors={errors}
+                />
 
-                <InputEmail watch={watch} register={register} errors={errors} isMatchesEmail={isMatchesEmail} setIsMatchesEmail={setIsMatchesEmail}/>
-                <InputLogin watch={watch} errors={errors} register={register} isMatchesLogin={isMatchesLogin} setIsMatchesLogin={setIsMatchesLogin}/>
-                <InputPassword placeholder="Создай пароль" password={password} setPassword={setPassword} register={register}/>
-                <InputRepeatPassword password={password} register={register} errors={errors}/>
-
-                <button disabled={!isButtonEnabled} type="submit" className="login__form-btn login__form-btn-signUp">Далее</button>
+                <button disabled={isDisabled} type="submit" className="login__form-btn login__form-btn-signUp">Далее</button>
             </form>
         </div>
     );

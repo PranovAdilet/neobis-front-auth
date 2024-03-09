@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {FieldErrors, UseFormRegister, UseFormWatch} from "react-hook-form";
 import {IShippingFields} from "../../../interface/app.interface";
 
-import {useCheckPresenceMutation} from "../../../redux/api/api";
+import {useCheckPresenceMutation} from "../../../api/api";
 import {uniqueFieldChecker} from "../../../utils/inputChecker";
 
 interface IProps{
@@ -11,9 +11,10 @@ interface IProps{
     watch: UseFormWatch<IShippingFields>
     isMatchesLogin: boolean
     setIsMatchesLogin: (v: boolean) => void
+    setIsDisabled: (v: boolean) => void
 }
 
-const InputLogin = ({register, errors, watch, isMatchesLogin, setIsMatchesLogin} : IProps) => {
+const InputLogin = ({register, errors, watch, isMatchesLogin, setIsMatchesLogin, setIsDisabled} : IProps) => {
 
     const [ mutate] = useCheckPresenceMutation()
 
@@ -23,23 +24,30 @@ const InputLogin = ({register, errors, watch, isMatchesLogin, setIsMatchesLogin}
     const loginField = watch("username")
 
     useEffect(() => {
+
+        setIsDisabled(true)
         const timer = setTimeout(() => {
             setLogin(loginField)
-        }, 700);
+        }, 600);
 
-        return () => clearTimeout(timer);
+        return () => {
+            clearTimeout(timer)
+        }
     }, [loginField])
 
     useEffect(() => {
+
         uniqueFieldChecker({
             value: login,
-            postValue: "username",
-            minLength: 5,
-            maxLength: 15,
-            testRegex: /^[^\d]+$/,
+            fieldName: "username",
+            isValidLength: login?.length >= 5 && login?.length <= 15,
+            isTested: /^[^\d]+$/.test(login),
             setIsState: setIsMatchesLogin,
             mutate
         })
+
+        setIsDisabled(false)
+
 
     }, [login, mutate, setIsMatchesLogin])
 

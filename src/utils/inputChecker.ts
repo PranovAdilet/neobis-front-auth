@@ -8,13 +8,11 @@ import {
 import {ICheckPresenceData} from "../interface/app.interface";
 import {MutationTrigger} from "@reduxjs/toolkit/dist/query/react/buildHooks";
 
-
 interface IProps {
     value: string,
-    postValue: string
-    minLength: number,
-    maxLength: number,
-    testRegex: RegExp ,
+    fieldName: string
+    isValidLength: boolean
+    isTested: boolean ,
     setIsState: (v: boolean) => void
     mutate: MutationTrigger<MutationDefinition<ICheckPresenceData, BaseQueryFn<string | FetchArgs, unknown, FetchBaseQueryError, {}, FetchBaseQueryMeta>, "api", boolean, "api">>
 }
@@ -22,12 +20,10 @@ interface IProps {
 export const uniqueFieldChecker = async ({...props} : IProps) => {
 
     try {
-        if (props.value?.length >= props.minLength
-            && props.value?.length <= props.maxLength
-            && props.testRegex.test(props.value)) {
+        if (props.isValidLength && props.isTested) {
 
             const newData = {
-                [props.postValue]: props.value,
+                [props.fieldName]: props.value,
                 endpoint: 'http://localhost:3000/',
             }
 
@@ -38,7 +34,7 @@ export const uniqueFieldChecker = async ({...props} : IProps) => {
             }
 
         } else {
-            props.setIsState(false);
+            props.setIsState(false)
         }
 
     } catch (error) {

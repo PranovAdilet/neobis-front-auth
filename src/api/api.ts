@@ -4,7 +4,7 @@ import {
     ILoginField, ILoginUser, IResetPassword,
     IShippingFields, IUser,
 
-} from "../../interface/app.interface";
+} from "../interface/app.interface";
 
 
 const API_URL = 'https://lorby-production.up.railway.app/v1'

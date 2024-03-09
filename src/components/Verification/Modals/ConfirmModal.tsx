@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {useResendConfirmationMutation} from "../../../redux/api/api";
+import {useResendConfirmationMutation} from "../../../api/api";
 import {useSelector} from "react-redux";
 import {selectUser} from "../../../redux/reducers/user";
 import CustomModal from "../../Modal/Modal";

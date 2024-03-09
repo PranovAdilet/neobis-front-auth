@@ -17,7 +17,7 @@ const ModalResetPassword = ({isOpen, setIsOpen} : IProps) => {
         <CustomModal isOpen={isOpen} setIsOpen={setIsOpen}>
             <div className="modal">
                 <h2 className="modal__title">Пароль был успешно изменен!</h2>
-                <div className="modal__text">Пожалуйста, вернитесь назад и авторизуйтесь!
+                <div className="modal__text">Вернись к главной странице и авторизуйся!
                 </div>
                 <button className="modal__btn" onClick={closeModal}>Вернуться</button>
             </div>

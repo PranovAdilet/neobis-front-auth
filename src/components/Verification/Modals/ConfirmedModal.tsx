@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {useConfirmationMutation} from "../../../redux/api/api";
+import {useConfirmationMutation} from "../../../api/api";
 import {useNavigate} from "react-router-dom";
 import CustomModal from "../../Modal/Modal";
 
@@ -12,7 +12,7 @@ interface IProps{
 
 function ConfirmedModal({setIsOpen, isOpen, token} : IProps) {
 
-    const [mutate, {data, status}] = useConfirmationMutation()
+    const [mutate] = useConfirmationMutation()
 
     const navigate = useNavigate()
 
@@ -20,7 +20,6 @@ function ConfirmedModal({setIsOpen, isOpen, token} : IProps) {
         mutate(token)
     }, [mutate, token]);
 
-    console.log(data, status)
 
     function closeModal() {
         navigate('/signIn')

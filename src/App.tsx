@@ -4,7 +4,6 @@ import {Navigate, Route, Routes} from "react-router-dom";
 import Registration from "./pages/Registration/Registration";
 import Confirmation from "./components/Verification/Confirmation";
 import Success from "./components/Logged/Logged";
-import Main from "./pages/Main/Main";
 import {useAppSelector} from "./redux/hooks/reduxHooks";
 import {selectUser} from "./redux/reducers/user";
 import ResetPassword from "./pages/ResetPassword/ResetPassword";
@@ -20,11 +19,10 @@ function App() {
         <div className="App">
             <ToastContainer />
             <Routes>
-                <Route path="/" element={<Main/>}/>
                 {
                     isAuth ? <>
                         <Route path="/profile" element={<Success/>}/>
-                        <Route path="*" element={<Navigate to="/" />}/>
+                        <Route path="*" element={<Navigate to="/profile" />}/>
                     </> : <>
                         <Route path="/signUp" element={<Registration/>}/>
                         <Route path="/signIn" element={<Login/>}/>

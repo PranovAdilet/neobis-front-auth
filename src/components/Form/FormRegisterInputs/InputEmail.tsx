@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {FieldErrors, UseFormRegister, UseFormWatch} from "react-hook-form";
 import {IShippingFields} from "../../../interface/app.interface";
-import {useCheckPresenceMutation} from "../../../redux/api/api";
+import {useCheckPresenceMutation} from "../../../api/api";
 import {uniqueFieldChecker} from "../../../utils/inputChecker";
 
 interface IProps{
@@ -9,22 +9,30 @@ interface IProps{
     register: UseFormRegister<IShippingFields>
     watch: UseFormWatch<IShippingFields>
     isMatchesEmail: boolean
-    setIsMatchesEmail: (v: boolean) => void
+    setIsMatchesEmail: (state: boolean) => void
+    setIsDisabled: (state: boolean) => void
 }
 
-const InputEmail = ({register, errors, watch, isMatchesEmail, setIsMatchesEmail} : IProps) => {
+const InputEmail = ({register, errors, watch, isMatchesEmail, setIsMatchesEmail, setIsDisabled} : IProps) => {
 
     const [ mutate] = useCheckPresenceMutation()
 
     const [email, setEmail] = useState('')
+
     const emailField = watch("email")
 
     useEffect(() => {
+
+        setIsDisabled(true)
+
         const timer = setTimeout(() => {
             setEmail(emailField)
-        }, 700)
+        }, 600)
 
-        return () => clearTimeout(timer)
+        return () => {
+            clearTimeout(timer)
+        }
+
     }, [emailField])
 
 
@@ -32,14 +40,14 @@ const InputEmail = ({register, errors, watch, isMatchesEmail, setIsMatchesEmail}
 
         uniqueFieldChecker({
             value: email,
-            postValue: "email",
-            minLength: 5,
-            maxLength: 25,
-            testRegex: /^[^ ]+@[^ ]+\.[a-z]{2,5}$/,
+            fieldName: "email",
+            isValidLength: email?.length >= 5 && email?.length <= 25,
+            isTested: /^[^ ]+@[^ ]+\.[a-z]{2,5}$/.test(email),
             setIsState: setIsMatchesEmail,
             mutate
         })
 
+        setIsDisabled(false)
     }, [email, mutate, setIsMatchesEmail])
 
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import CustomModal from "../Modal/Modal";
+import CustomModal from "../../Modal/Modal";
 
 interface IProps{
     isOpen: boolean

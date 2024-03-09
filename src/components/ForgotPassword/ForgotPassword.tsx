@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
 import {MdArrowBackIosNew} from "react-icons/md";
-import {useForgotPasswordMutation} from "../../redux/api/api";
-import ModalForgotPassword from "./ModalForgotPassword";
-import InputForgotPassword from "./InputForgotPassword";
+import {useForgotPasswordMutation} from "../../api/api";
+import ModalForgotPassword from "./Modal/ModalForgotPassword";
+import InputForgotPassword from "./Input/InputForgotPassword";
 
 
 interface IProps {

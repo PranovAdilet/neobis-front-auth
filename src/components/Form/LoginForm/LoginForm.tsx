@@ -3,7 +3,7 @@ import {Field, Formik, Form} from "formik";
 import {GoEye, GoEyeClosed} from "react-icons/go";
 import {initialLoginValues, schema} from "../../../utils/helper";
 import {useNavigate} from "react-router-dom";
-import {useSignInMutation} from "../../../redux/api/api";
+import {useSignInMutation} from "../../../api/api";
 import {toast} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import {ILoginField} from "../../../interface/app.interface";
@@ -18,13 +18,16 @@ const LoginForm = ({setForgotPassword} : IProps) => {
 
     const [showPassword, setShowPassword] = useState(false)
 
+    const [mutate] = useSignInMutation()
+
     const navigate = useNavigate()
     const dispatch = useAppDispatch()
+
 
     const handleNavigate = () => {
         navigate('/signUp')
     }
-    const [mutate] = useSignInMutation()
+
 
     const togglePasswordVisibility = () => {
         setShowPassword(!showPassword)

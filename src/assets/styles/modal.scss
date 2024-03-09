@@ -31,7 +31,6 @@
   }
 
   &__btn{
-    background: rgb(41, 41, 41);
 
     border-radius: 12px;
     border: none;
@@ -41,14 +40,16 @@
     font-size: 16px;
     line-height: 24px;
 
-    color: rgb(248, 248, 248);
-
     width: 100%;
     padding: 13px;
 
     cursor: pointer;
 
     text-align: center;
+    &:hover{
+      background: rgb(41, 41, 41);
+      color: rgb(248, 248, 248);
+    }
   }
 }
 

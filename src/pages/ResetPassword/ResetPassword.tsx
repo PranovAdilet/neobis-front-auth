@@ -5,7 +5,6 @@ import ModalResetPassword from "../../components/ResetPassword/Modal/ModalResetP
 import ResetPasswordForm from "../../components/ResetPassword/Form/ResetPasswordForm";
 
 
-
 const ResetPassword = () => {
 
 

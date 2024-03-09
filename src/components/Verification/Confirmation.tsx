@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import image from "../../assets/images/login.png";
 import { MdArrowBackIosNew } from "react-icons/md";
 import Modal from "./Modals/ConfirmModal";
-import {useResendConfirmationMutation} from "../../redux/api/api";
+import {useResendConfirmationMutation} from "../../api/api";
 import {selectUser} from "../../redux/reducers/user";
 import {useSearchParams} from "react-router-dom";
 import ConfirmedModal from "./Modals/ConfirmedModal";
@@ -34,7 +34,6 @@ const Confirmation = () => {
 
 
     function openModal() {
-
         if (user){
             mutate(user)
         }

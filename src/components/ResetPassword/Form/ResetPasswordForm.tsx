@@ -1,14 +1,18 @@
 import React, {useEffect, useState} from 'react';
-import InputPassword from "../../Form/FormInputs/InputPassword/InputPassword";
+import InputPassword from "../../Form/FormRegisterInputs/InputPassword/InputPassword";
 import {SubmitHandler, useForm} from "react-hook-form";
 import {IShippingFields} from "../../../interface/app.interface";
-import {useResetPasswordMutation} from "../../../redux/api/api";
+import {useResetPasswordMutation} from "../../../api/api";
 import {useSearchParams} from "react-router-dom";
+import ModalResetPassword from "../Modal/ModalResetPassword";
+import {toast} from "react-toastify";
 
 const ResetPasswordForm = () => {
 
     const [password, setPassword] = useState('')
     const [isDisabled, setIsDisabled] = useState(true)
+    const [isOpen, setIsOpen] = useState(false)
+
 
     const {
         register,
@@ -22,14 +26,18 @@ const ResetPasswordForm = () => {
     const [searchParams] = useSearchParams()
     const rpt = searchParams.get('rpt')
 
-    const onSubmit: SubmitHandler<IShippingFields> = async (data) => {
+    const onSubmit: SubmitHandler<IShippingFields> = async () => {
         if (rpt){
             const newData = {
                 password,
                 rpt: rpt
             }
 
-            await resetPassword(newData)
+            await resetPassword(newData).then(_ => {
+                setIsOpen(true)
+            }).catch(error => {
+                toast.error(`Ошибка: ${error}`)
+            })
         }else {
             alert("Подтверди почту!")
         }
@@ -39,7 +47,9 @@ const ResetPasswordForm = () => {
 
 
     useEffect(() => {
-        if (password.length > 7 && password.length < 16 && /[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?~]/.test(password) && /\d/.test(password)){
+        if (password.length > 7 && password.length < 16 && /[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?~]/.test(password)
+            && /\d/.test(password)){
+
             setIsDisabled(false)
         }else {
             setIsDisabled(true)
@@ -51,11 +61,16 @@ const ResetPasswordForm = () => {
         <form onSubmit={handleSubmit(onSubmit)} className="login__form">
 
             <h2 className="login__form-title">Восстановление пароля</h2>
-            <InputPassword placeholder="Введи новый пароль" register={register} password={password}
-                           setPassword={setPassword}/>
+            <InputPassword
+                placeholder="Введи новый пароль"
+                register={register}
+                password={password}
+                setPassword={setPassword}
+            />
 
             <button disabled={isDisabled} type="submit" className="login__form-btn">Изменить пароль
             </button>
+            <ModalResetPassword isOpen={isOpen} setIsOpen={setIsOpen}/>
         </form>
     );
 };
