@@ -9,6 +9,8 @@ import {
 
 const API_URL = 'https://lorby-production.up.railway.app/v1'
 
+
+
 export const api = createApi({
     reducerPath: "api",
     tagTypes:['api'],
@@ -94,9 +96,8 @@ export const api = createApi({
             }
         }),
 
-        getUser: builder.query<IUser, void>({
-            query: () => {
-                const token = localStorage.getItem('accessToken')
+        getUser: builder.query<IUser, string>({
+            query: (token) => {
 
                 const headers = {
                     Authorization: 'Bearer ' + token
@@ -130,6 +131,7 @@ export const api = createApi({
 
     })
 })
+
 
 export const {useSignUpMutation, useResetPasswordMutation,
     useForgotPasswordMutation, useGetUserQuery,

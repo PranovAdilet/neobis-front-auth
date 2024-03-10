@@ -5,7 +5,6 @@ import {initialLoginValues, schema} from "../../../utils/helper";
 import {useNavigate} from "react-router-dom";
 import {useSignInMutation} from "../../../api/api";
 import {toast} from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
 import {ILoginField} from "../../../interface/app.interface";
 import {useAppDispatch} from "../../../redux/hooks/reduxHooks";
 import {isAuthUser} from "../../../redux/reducers/user";
